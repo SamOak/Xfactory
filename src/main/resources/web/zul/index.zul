@@ -1,0 +1,65 @@
+<zk>
+
+	
+
+		<borderlayout apply="de.semsoft.xfactory.ui.controller.IndexController">
+			<center border="0">
+				<tabbox id="tb" height="100%" width="100%">
+				    <tabs id="tabs">
+				        <tab id="Home"						label="Home" disabled="false"/>
+				        <tab id="Library"					label="Library" tooltiptext=""/>
+				        <tab id="XSLBatchTransformation"	label="XSL Batch Transformation" tooltiptext="Pause/start batch processing, shutdown server, check batch protokoll, get infos about filesystem ..." />
+				        <tab id="XSLTWorkbench"				label="XSLT Workbench" disabled="false"/>
+				        <tab id="XSDValidator"				label="XSD Validator" disabled="false"/>
+				        <tab id="XPathWorkbench"			label="XPath Workbench" tooltiptext="Work with Xpath expression and see online results..."/>
+				        <tab id="XMLBeautifier"				label="XML Beautifier" disabled="false"/>
+				    </tabs>
+				    <toolbar>
+				    	<image src="img/logo.jpg" width="30px" height="30px"></image>
+				    </toolbar>
+				    <tabpanels>
+				        <tabpanel style="background: #f5f6f8">
+							<vbox width="100%" align="center">
+								<label style="color: grey;font-size: 45px;font-weight:bold;font-family: Verdana">Xfactory</label>
+								<space height="25px"/>
+								<image src="img/logo.jpg" height="337px" width="600px" id="logo" align="left" border="0" tooltiptext="(c) by SEM"/>
+								<space height="25px"/>
+		   						<label style="font-size: 18px;font-weight:bold;font-family: Verdana;color:grey"></label>
+		   						<label style="font-size: 12px;font-family: Verdana">Version 0.0.1</label>
+								<space height="25px"/>
+		   						<hbox align="end" pack="center" sizedByContent="false">
+									<label>Theme:</label>
+									<combobox id="themeSelection">
+										<comboitem label="Atlantic" value="atlantic"/>
+										<comboitem label="Breeze" value="breeze"/>
+										<comboitem label="Iceblue (default)" value="Iceblue"/>
+										<comboitem label="Sapphire" value="sapphire"/>					
+										<comboitem label="Silvertail" value="silvertail"/>					
+									</combobox>
+								</hbox>
+							</vbox>
+						</tabpanel>
+				        <tabpanel id="panelXSLTLibrary">
+					        <include src="~./zul/Library.zul"/>
+			        	</tabpanel>
+			        	 <tabpanel>
+				        	<include src="~./zul/AppControl.zul"/>
+				        </tabpanel>
+				        <tabpanel>
+				        	<include src="~./zul/XSLTWorkbench.zul"/>
+						</tabpanel>
+				        <tabpanel>
+				        	<include src="~./zul/XSDValidator.zul"/>
+				        </tabpanel>
+				        <tabpanel>
+				        	<include src="~./zul/XPathWorkbench.zul"/>
+						</tabpanel>
+				        <tabpanel>
+				        	<include src="~./zul/XMLBeautify.zul"/>
+				        </tabpanel>						
+				    </tabpanels>
+				</tabbox>	
+			</center>
+		</borderlayout>
+	
+</zk>

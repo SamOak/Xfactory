@@ -1,0 +1,94 @@
+<zk>
+<style> 
+div.z-listbox-head th{ 
+font-size: 8pt; 
+} 
+div.z-head-cell-inner{ 
+font-size: 8pt; 
+} 
+</style> 
+
+	<borderlayout apply="de.semsoft.xfactory.ui.controller.AppControlController">
+		
+		<west  title="Remotecontrol" size="250px"  splittable="true" collapsible="true" open="false">
+			<grid>
+				<columns sizable="false">
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="Start/Stop"/>
+						<image id="startStop" src="img/pause.png" style="cursor: pointer" ></image>
+					</row>
+					<row>
+						<label value="Shutdown"/>
+						<image id="shutdown" src="img/shutdown.png" style="cursor: pointer" ></image>
+					</row>
+				</rows>
+			</grid>
+			
+		</west>
+		<center>
+			<vbox vflex="true">
+				<toolbar height="40px">
+					<toolbarbutton id="refreshButton" image="img/refresh.gif"></toolbarbutton>
+				</toolbar>
+				<listbox id="protocolListbox" 
+ 						 vflex="true"
+ 						 checkmark="false"  
+						 emptyMessage="no protocol data available">
+					<listhead sizable="true"  menupopup="auto">
+						<listheader label="ID" width="90px" sort="auto(id)"/>
+						<listheader label="Start" width="210px" sort="auto(startTime)"/>
+						<listheader label="Finish" width="210px" sort="auto(finishTime)"/>
+						<listheader label="Trigger" width="110px" sort="auto(trigger)"/>
+						<listheader label="Info" width="500px" sort="auto(info)"/>
+					</listhead>
+					<template name="model">
+			            <listitem>
+			            	<listcell label="${each.id}"></listcell>
+			            	<listcell label="${each.startTime}"></listcell>
+			            	<listcell label="${each.finishTime}"></listcell>
+			                <listcell label="${each.trigger}"></listcell>
+			                <listcell label="${each.info}"></listcell>
+			            </listitem>
+			        </template>
+				</listbox>
+			</vbox>
+		</center>
+		<east title="Metric" size="350px" splittable="true" collapsible="true" open="false">
+			<vbox>
+				<groupbox id="gbPerformance" width="300px" mold="3d">
+					<caption image="img/performance.png">Performance</caption>
+					<grid>
+						<columns sizable="false">
+							<column />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<label value="Starttime"/>
+								<label id="startTimeLabel"/>
+							</row>
+							<row>
+								<label value="Last ping"/>
+								<label id="lastPingLabel"/>
+							</row>
+							<row>
+								<label value="No. jobs"/>
+								<label id="noJobsLabel"/>
+							</row>						
+													
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox id="gbFileSystem" width="300px"  mold="3d">
+					<caption image="img/filesystem.png">Filesystem</caption>
+						
+				</groupbox>
+			</vbox>
+		</east>
+	</borderlayout>
+
+</zk>

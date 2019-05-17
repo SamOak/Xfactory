@@ -1,0 +1,21 @@
+<?page title="View Xlst File" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="${arg.filename}..." 
+		border="normal"  
+		closable="true"
+		mode="modal" 
+		defaultActionOnShow="appear" 
+		focus="true" 
+		maximizable="true" 
+		position="center" 
+		sizable="true"
+		width="80%"
+		height="80%"
+		onCancel="self.visible = false; event.stopPropagation();"
+		onOpen="self.focus()"
+		>
+
+		<aceditor id="s" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true" fontSize="12px" value="${arg.content}" ></aceditor>
+
+</window>
+</zk>

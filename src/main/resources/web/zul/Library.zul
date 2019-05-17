@@ -1,0 +1,32 @@
+<zk>
+	
+		<vbox vflex="true" apply="de.semsoft.xfactory.ui.controller.FileController">
+	
+			<toolbar id="toolbarFileLibrary" height="30px" align="start" >
+	            <toolbarbutton id="toolbarFileLibraryRefresh" tooltiptext="Refresh..." image="img/refresh.gif"  />
+	            <space />
+	            <toolbarbutton id="toolbarFileLibraryView"  tooltiptext="View file..." image="/img/view.gif"  />
+	            <space />
+	            <toolbarbutton id="toolbarFileLibraryAdd"  tooltiptext="Add new..." image="/img/addnew.gif" upload="true,maxsize=-1" />
+	            <toolbarbutton id="toolbarFileLibraryDelete"  tooltiptext="Delete!" image="/img/delete.gif"  />
+	          </toolbar>
+	
+			<listbox id="fileListbox" vflex="true" checkmark="true" onClick="">
+	        							
+				<listhead sizable="true">
+					<listheader label="Filename" sort="auto(fileName)" width="500px"/>
+					<listheader label="Timestamp" sort="auto(lastModified)" width="220px"/>
+					<listheader label="Filesize" sort="auto(fileSize)"/>
+				</listhead>
+				<template name="model">
+		            <listitem>
+		                <listcell label="${each.fileName}"></listcell>
+		                <listcell label="${each.timestamp}"></listcell>
+		                <listcell label="${each.fileSizeFormated}"></listcell>
+		            </listitem>
+		        </template>
+			</listbox>
+			<label id="libPath" style="color:grey"></label>
+		</vbox>
+	
+</zk>
