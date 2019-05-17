@@ -1,25 +1,5 @@
-# Xfactory
-
-<!-- TOC START min:1 max:3 link:true asterisk:false update:true -->
-- [Xfactory](#xfactory)
-- [Xfactory - xsl transformation](#xfactory---xsl-transformation)
-  - [What is Xfactory?](#what-is-xfactory)
-  - [Functions](#functions)
-    - [Batchmode](#batchmode)
-    - [Rest-Service](#rest-service)
-    - [Web-GUI](#web-gui)
-  - [Getting Started](#getting-started)
-    - [Run the application](#run-the-application)
-    - [Application parameter](#application-parameter)
-    - [Docker¶](#docker)
-  - [Useful stuff](#useful-stuff)
-    - [FAQ](#faq)
-    - [Spring boot actuator](#spring-boot-actuator)
-  - [Beyond...](#beyond)
-<!-- TOC END -->
-
-
-# Xfactory - XML, XSL, XPATH Toolbox and batchprocessing
+# Xfactory 
+## XML, XSL, XPATH Toolbox and batchprocessing
 
 Xfactory is a free software which I wrote just to play around with spring-boot and ZK framework.
 
