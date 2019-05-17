@@ -44,7 +44,7 @@ Overall: Cut me some slack :-)
 I will continue to work on this project to improve it more and more. If you want to support me with a donation, I would be very pleased.
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TVD2RFNP5N5UL)
 
- 
+
 ## What is Xfactory?
 
 Xfactory runs xlst in a **batch-mode** (filesystem) or via **REST-Service** or in **Web GUI** (Workbench).
@@ -114,7 +114,54 @@ Just send a xml file via *post method* to
 
 ### Web-GUI
 
-... to be filled
+#### Toolbars
+
+Please find a short description for all toolbaricons used by Xfactory:
+
+| Icon | Description |
+| ------ | ---------- |
+| ![Refresh](src/main/resources/static/img/refresh.gif?raw=true "Refresh") | Refresh the list in this context |
+| ![AddNew](src/main/resources/static/img/addnew.gif?raw=true "AddNew") | Load file content (from local disk) |
+| ![Beauty](src/main/resources/static/img/beautify.gif?raw=true "Beautifier") | Beautify the xml |
+| ![Clear](src/main/resources/static/img/clear.gif?raw=true "Clear") | Reset the view (clear errors, clear content) |
+| ![Start](src/main/resources/static/img/xsdvalidate.gif?raw=true "Start") | Start transformation or check |
+| ![ExecuteXPath](src/main/resources/static/img/start16.gif?raw=true "ExecuteXPath") | Exceute XPath |
+
+
+
+| Icon | Description |
+| ------ | ---------- |
+| ![Pause](src/main/resources/static/img/pause.png?raw=true "Pause") | Pause the batch processing. |
+| ![Shutdown](src/main/resources/static/img/shutdown.png?raw=true "Shutdown") | Shutdown the application (force shutdown!) |
+
+#### Library
+
+This section helps you to organize you xslt files for the batch processing component.
+Add, delete or view files ...
+
+#### XSLT Batch Transformation
+
+This section shows a live protocoll of each processed xml (batch processing). This protocoll includes
+the file processing and the ReST processing.
+
+Additional to that you can pause and shutdown the application via the "remote control".
+
+#### XSLT Workbench
+
+Load a sample xml file and start to work on your xsl-sheet. You can run your sheet and Xfactory shows the result
+or a detailed error message.
+
+#### XSD Valitdator
+
+Load a xml file and axsd file and check if the xml follows the xsd definitions.
+
+#### XPath Workbench
+
+Load a xml file and type your Xpath expression and see the result online ...
+
+#### XML Beautifier
+
+Load a xml file and run a xml beautifier.
 
 ## Getting Started
 
@@ -151,12 +198,13 @@ For additional information please have a look to this: https://docs.spring.io/sp
 
 ### Docker¶
 
-## Useful stuff
+Currently there is 'just' a Dockerfile. To build a Image based on the current version run
 
-### FAQ
-Question 	Answer
-Xfactory is not running, but there are *.job files inside the IN-Area 	Just delete the semaphore files (*.job) and restart Xfactory again. It will pick up the files and start processing.
-Diesen Bereich bearbeiten
+    docker build .
+
+from the projects root directory.
+
+## Useful stuff
 
 ### Spring boot actuator
 
@@ -174,7 +222,7 @@ Ok, so what is missing?
 
 * Implement testcases, what is not done yet :-(
 * create a docker setup to store *application.properties* and all the files (in/out/done) outside the docker-image
-* use different xlst processors (by configuration)
+* create a FAQ-page for all your questions and notes
 
 (Do you have one more point?)
 
