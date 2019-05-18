@@ -184,9 +184,13 @@ For additional information please have a look to this: https://docs.spring.io/sp
 
 Currently there is 'just' a Dockerfile. To build a Image based on the current version run
 
-    docker build .
+    docker build -t "xfactory:xfactor.0.0.1" .
 
 from the projects root directory.
+
+Run a container with:
+
+	docker run -p 8080:8080 xfactory:xfactor.0.0.1
 
 ## Useful stuff
 
