@@ -25,6 +25,10 @@ I will continue to work on this project to improve it more and more. If you want
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TVD2RFNP5N5UL)
 
 
+You'll find the current release here: 
+[Xfactory-0.0.1.jar](https://github.com/SamOak/Xfactory/releases/download/0.0.1/Xfactory-0.0.1.jar)
+
+
 ## What is Xfactory?
 
 Xfactory runs xlst in a **batch-mode** (filesystem) or via **REST-Service** or in **Web GUI** (Workbench).
