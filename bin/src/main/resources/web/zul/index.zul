@@ -43,7 +43,7 @@
 					        <include src="~./zul/Library.zul"/>
 			        	</tabpanel>
 			        	 <tabpanel>
-				        	<include src="~./zul/BatchTransform.zul"/>
+				        	<include src="~./zul/AppControl.zul"/>
 				        </tabpanel>
 				        <tabpanel>
 				        	<include src="~./zul/XSLTWorkbench.zul"/>

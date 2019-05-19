@@ -1,0 +1,40 @@
+<zk>
+	<borderlayout apply="de.semsoft.xfactory.ui.controller.XpathWorkbenchController">
+		
+		<center>
+			<borderlayout>
+				<north>
+				<hlayout sclass="z-valign-middle">
+       				<textbox id="xpathExpression" placeholder="//XPath expression..." width="350px" style="font-size:11pt;font-family:'Tahoma'" ></textbox>
+       				<toolbar height="20px">
+						<toolbarbutton id="toolbarAddXML"	image="/img/addnew.gif"		tooltiptext="Add content..."				style="font-size:12px" upload="true,maxsize=-1,accept=.xml"  />
+						<toolbarbutton id="toolbarClearXML"	image="/img/clear.gif"		tooltiptext="Clear..." 						style="font-size:12px" />
+						<toolbarbutton id="toolbarBeautify" image="/img/beautify.gif"	tooltiptext="Beautify document..."			style="font-size:12px" />
+						<toolbarbutton id="toolbarStart"	image="/img/start16.gif"	tooltiptext="Execute Xpath expression..."	style="font-size:12px"/>
+					</toolbar>	
+   				</hlayout>
+				</north>
+				<center>
+					<aceditor id="sourceXML" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true" fontSize="12px"></aceditor>
+				</center>
+			</borderlayout>
+				
+		</center>
+		<east width="40%"  splittable="true" collapsible="true" open="true">
+			<borderlayout>
+				<north>
+					<label style="color:grey;font-size:11pt;font-family: 'Tahoma'">Result:</label>
+				</north>
+				<center>
+					<aceditor id="resultText" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true" fontSize="12px"></aceditor>
+				</center>
+				<south collapsible="true" open="false" splittable="true" id="southErrorText" height="40%" title="Messages...">
+					<textbox id="errorText" style="color:red;" width="100%" height="100%" multiline="true"></textbox>
+				</south>
+			</borderlayout>
+				
+		</east>
+	</borderlayout>
+
+
+</zk>

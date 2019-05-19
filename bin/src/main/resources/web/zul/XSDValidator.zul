@@ -1,0 +1,39 @@
+<zk>
+		<borderlayout apply="de.semsoft.xfactory.ui.controller.XsdValidatorController">
+			<west  width="50%" splittable="true" collapsible="true" open="true">
+				<borderlayout>
+					<north>
+					<toolbar height="20px">
+						<label style="color:grey;font-size:11pt;font-family: 'Tahoma'">XML</label>
+						<toolbarbutton id="toolbarAddXML"		image="/img/addnew.gif"			tooltiptext="Add content..."				style="font-size:12px" upload="true,maxsize=-1,accept=.xml"  />
+						<toolbarbutton id="toolbarBeautifyXML"	image="/img/beautify.gif"		tooltiptext="Beautify document..."			style="font-size:12px" />
+						<toolbarbutton id="toolbarClearXML"		image="/img/clear.gif"			tooltiptext="Clear..." 						style="font-size:12px" />
+						<toolbarbutton id="toolbarStart"		image="/img/xsdvalidate.gif"	tooltiptext="Validate document..."			style="font-size:12px" />
+					</toolbar>		
+					</north>
+					<center>
+						<aceditor id="sourceXML" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true" fontSize="12px"></aceditor>
+					</center>
+				</borderlayout>
+					
+			</west>
+			<east width="50%"  splittable="true" collapsible="true" open="true">
+				<borderlayout>
+					<north>
+					<toolbar height="20px">
+						<label style="color:grey;font-size:11pt;font-family: 'Tahoma'">XSD</label>
+						<toolbarbutton id="toolbarAddXSD"		image="/img/addnew.gif"			tooltiptext="Add xsd file..."				style="font-size:12px" upload="true,maxsize=-1,accept=.xsd"  />
+						<toolbarbutton id="toolbarBeautifyXSD"	image="/img/beautify.gif"		tooltiptext="Beautify document..."			style="font-size:12px" />
+					</toolbar>		
+					</north>
+					<center>
+						<aceditor id="xsdContent" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true" fontSize="12px"></aceditor>
+					</center>
+				</borderlayout>
+			</east>
+			<south collapsible="false" open="true" title="Result..." splittable="true">
+				<textbox id="resultText" style="color:red;" width="100%" height="100%" multiline="true"></textbox>
+			</south>
+		</borderlayout>
+	
+</zk>

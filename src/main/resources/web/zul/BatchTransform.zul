@@ -1,0 +1,158 @@
+<zk>
+<style> 
+div.z-listbox-head th{ 
+font-size: 8pt; 
+} 
+div.z-head-cell-inner{ 
+font-size: 8pt; 
+} 
+</style> 
+
+	<borderlayout apply="de.semsoft.xfactory.ui.controller.AppControlController">
+		
+		<west  title="Remotecontrol" size="250px"  splittable="true" collapsible="true" open="false">
+			<grid>
+				<columns sizable="false">
+					<column />
+					<column />
+				</columns>
+				<rows>
+					<row>
+						<label value="Start/Stop"/>
+						<image id="startStop" src="img/pause.png" style="cursor: pointer" ></image>
+					</row>
+					<row>
+						<label value="Shutdown"/>
+						<image id="shutdown" src="img/shutdown.png" style="cursor: pointer" ></image>
+					</row>
+				</rows>
+			</grid>
+			
+		</west>
+		<center>
+			<borderlayout>
+				
+				<west flex="true" width="40%">
+					<vbox vflex="true">
+						<toolbar height="40px">
+							<toolbarbutton id="refreshSlotList" image="img/refresh.gif"></toolbarbutton>
+						</toolbar>
+						<listbox id="slotOverView" 
+			 						 vflex="true"
+			 						 checkmark="false"  
+									 emptyMessage="no slots available">
+								<listhead sizable="true"  menupopup="auto">
+									<listheader label="SlotName"	width="130px"/>
+									<listheader label="IN" 			width="90px"/>
+									<listheader label="OUT"			width="90px"/>
+									<listheader label="Done"		width="90px"/>
+									<listheader label="Error"		width="90px"/>
+								</listhead>
+								<template name="model">
+						            <listitem>
+						            </listitem>
+						        </template>
+							</listbox>
+					</vbox>
+				</west>
+				<center>
+					<vbox vflex="true">
+						<toolbar height="40px">
+							<combobox id="themeSelection">
+								<comboitem label="IN" value="IN"/>
+								<comboitem label="OUT" value="IN"/>
+								<comboitem label="DONE" value="IN"/>
+								<comboitem label="ERROR" value="IN"/>
+							</combobox>
+							<toolbarbutton id="refreshFileList" image="img/refresh.gif"></toolbarbutton>
+							<toolbarbutton id="toolbarX"  tooltiptext="View file..." image="/img/view.gif"  />
+	            			<space />
+				            <toolbarbutton id="toolbarY"  tooltiptext="Add new..." image="/img/addnew.gif" upload="true,maxsize=-1" />
+				            <toolbarbutton id="toolbarZ"  tooltiptext="Delete!" image="/img/delete.gif"  />
+						</toolbar>
+						<listbox id="fileListView" 
+			 						 vflex="true"
+			 						 checkmark="false"  
+									 emptyMessage="no slots available">
+								<listhead sizable="true"  menupopup="auto">
+									<listheader label="Filename"  width="300px"/>
+									<listheader label="Timestamp" width="200px"/>
+									<listheader label="Filesize" />
+								</listhead>
+								<template name="model">
+						            <listitem>
+						            </listitem>
+						        </template>
+							</listbox>
+					</vbox>				
+				
+				
+				
+				
+				</center>						
+				<south height="50%">
+					<vbox vflex="true">
+						<toolbar height="40px">
+							<toolbarbutton id="refreshButton" image="img/refresh.gif"></toolbarbutton>
+						</toolbar>
+						<listbox id="protocolListbox" 
+		 						 vflex="true"
+		 						 checkmark="false"  
+								 emptyMessage="no protocol data available">
+							<listhead sizable="true"  menupopup="auto">
+								<listheader label="ID" width="90px" sort="auto(id)"/>
+								<listheader label="Start" width="210px" sort="auto(startTime)"/>
+								<listheader label="Finish" width="210px" sort="auto(finishTime)"/>
+								<listheader label="Trigger" width="110px" sort="auto(trigger)"/>
+								<listheader label="Info" width="500px" sort="auto(info)"/>
+							</listhead>
+							<template name="model">
+					            <listitem>
+					            	<listcell label="${each.id}"></listcell>
+					            	<listcell label="${each.startTime}"></listcell>
+					            	<listcell label="${each.finishTime}"></listcell>
+					                <listcell label="${each.trigger}"></listcell>
+					                <listcell label="${each.info}"></listcell>
+					            </listitem>
+					        </template>
+						</listbox>
+					</vbox>				
+				</south>
+			
+			</borderlayout>
+		</center>
+		<east title="Metric" size="350px" splittable="true" collapsible="true" open="false">
+			<vbox>
+				<groupbox id="gbPerformance" width="300px" mold="3d">
+					<caption image="img/performance.png">Performance</caption>
+					<grid>
+						<columns sizable="false">
+							<column />
+							<column />
+						</columns>
+						<rows>
+							<row>
+								<label value="Starttime"/>
+								<label id="startTimeLabel"/>
+							</row>
+							<row>
+								<label value="Last ping"/>
+								<label id="lastPingLabel"/>
+							</row>
+							<row>
+								<label value="No. jobs"/>
+								<label id="noJobsLabel"/>
+							</row>						
+													
+						</rows>
+					</grid>
+				</groupbox>
+				<groupbox id="gbFileSystem" width="300px"  mold="3d">
+					<caption image="img/filesystem.png">Filesystem</caption>
+						
+				</groupbox>
+			</vbox>
+		</east>
+	</borderlayout>
+
+</zk>
