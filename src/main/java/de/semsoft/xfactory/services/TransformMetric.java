@@ -9,29 +9,27 @@ import org.springframework.stereotype.Component;
 import de.semsoft.xfactory.logging.modell.LoggingEntry;
 import de.semsoft.xfactory.services.interfaces.ITransformMetric;
 
-
 @Component
 public class TransformMetric implements ITransformMetric {
 
-	public final static String STATUS_ERROR			= "ERROR";	
-	public final static String STATUS_OK			= "OK";
-	
-		
-	private String        uuid;
-	private LocalDateTime startTime  = null;
-	private LocalDateTime finishTime = null;  
-	private String        status     = null;
-	private String        info       = null;
-	
-	private long        contentLengthSource = 0;
-	private long        contentLengthTarget = 0;
-	
-	public  TransformMetric() {
+	public final static String STATUS_ERROR = "ERROR";
+	public final static String STATUS_OK = "OK";
+
+	private String uuid;
+	private LocalDateTime startTime = null;
+	private LocalDateTime finishTime = null;
+	private String status = null;
+	private String info = null;
+
+	private long contentLengthSource = 0;
+	private long contentLengthTarget = 0;
+
+	public TransformMetric() {
 		uuid = UUID.randomUUID().toString();
 		this.startTime = LocalDateTime.now();
 		this.status = TransformMetric.STATUS_OK;
 	}
-	
+
 	@Override
 	public void start() {
 		startTime = LocalDateTime.now();
@@ -42,17 +40,18 @@ public class TransformMetric implements ITransformMetric {
 	public void finish() {
 		finish(null);
 	}
+
 	public void finish(String status) {
-		
-		if( status != null ) {
+
+		if (status != null) {
 			this.status = status;
 		}
 		finishTime = LocalDateTime.now();
 	}
 
 	public LoggingEntry getLoggingEntry(String trigger) {
-		
-		LoggingEntry loggingEntry = new LoggingEntry();
+
+		final LoggingEntry loggingEntry = new LoggingEntry();
 		loggingEntry.setUuid(uuid);
 		loggingEntry.setTrigger(trigger);
 		loggingEntry.setStartTime(startTime);
@@ -61,9 +60,9 @@ public class TransformMetric implements ITransformMetric {
 		loggingEntry.setInfo(info);
 		loggingEntry.setContentLengthSource(contentLengthSource);
 		loggingEntry.setContentLengthTarget(contentLengthTarget);
-		
+
 		return loggingEntry;
-		
+
 	}
 
 	@Override
@@ -127,8 +126,4 @@ public class TransformMetric implements ITransformMetric {
 		this.contentLengthTarget = contentLengthTarget;
 	}
 
-	
-	
-	
-	
 }

@@ -1,45 +1,47 @@
 package de.semsoft.xfactory.logging.modell;
 
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "Logging")
 public class LoggingEntry {
-	
+
 	public final static String TRIGGER_HTTP = "HTTP";
 	public final static String TRIGGER_FILE = "FILE";
-	public final static String TRIGGER_GUI  = "GUI";
-	
+	public final static String TRIGGER_GUI = "GUI";
+
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	
-	@Column( name = "uuid")
+
+	@Column(name = "uuid")
 	private String uuid;
 
-	
-	@Column( name = "trigger")
+	@Column(name = "trigger")
 	private String trigger;
-	
-	@Column( name = "starttime" )
-	private LocalDateTime  startTime;
-	
-	@Column( name = "finishtime" )
-	private LocalDateTime  finishTime;
 
-	@Column( name = "status")
+	@Column(name = "starttime")
+	private LocalDateTime startTime;
+
+	@Column(name = "finishtime")
+	private LocalDateTime finishTime;
+
+	@Column(name = "status")
 	private String status;
-	
-	@Column( name = "info")
+
+	@Column(name = "info")
 	private String info;
 
-	@Column( name = "contentLengthSource")
+	@Column(name = "contentLengthSource")
 	private long contentLengthSource;
 
-	@Column( name = "contentLengthTarget")
+	@Column(name = "contentLengthTarget")
 	private long contentLengthTarget;
 
 	public Long getId() {
@@ -114,6 +116,4 @@ public class LoggingEntry {
 		this.contentLengthTarget = contentLengthTarget;
 	}
 
-	
 }
-

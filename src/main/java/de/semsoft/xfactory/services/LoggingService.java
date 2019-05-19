@@ -12,9 +12,8 @@ public class LoggingService {
 	@Autowired
 	LoggingRepository loggingRepository;
 
-	
 	public LoggingEntry addLoggingEntry(LoggingEntry loggingentry) {
 		return loggingRepository.save(loggingentry);
 	}
-	
+
 }
