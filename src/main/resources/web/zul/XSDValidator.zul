@@ -3,7 +3,7 @@
 			<west  width="50%" splittable="true" collapsible="true" open="true">
 				<borderlayout>
 					<north>
-					<toolbar height="20px">
+					<toolbar>
 						<label style="color:grey;font-size:11pt;font-family: 'Tahoma'">XML</label>
 						<toolbarbutton id="toolbarAddXML"		image="/img/addnew.gif"			tooltiptext="Add content..."				style="font-size:12px" upload="true,maxsize=-1,accept=.xml"  />
 						<toolbarbutton id="toolbarBeautifyXML"	image="/img/beautify.gif"		tooltiptext="Beautify document..."			style="font-size:12px" />
@@ -20,7 +20,7 @@
 			<east width="50%"  splittable="true" collapsible="true" open="true">
 				<borderlayout>
 					<north>
-					<toolbar height="20px">
+					<toolbar>
 						<label style="color:grey;font-size:11pt;font-family: 'Tahoma'">XSD</label>
 						<toolbarbutton id="toolbarAddXSD"		image="/img/addnew.gif"			tooltiptext="Add xsd file..."				style="font-size:12px" upload="true,maxsize=-1,accept=.xsd"  />
 						<toolbarbutton id="toolbarBeautifyXSD"	image="/img/beautify.gif"		tooltiptext="Beautify document..."			style="font-size:12px" />

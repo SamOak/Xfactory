@@ -52,7 +52,7 @@ public class Xfactory {
 
 	@Autowired
 	ApplicationControl appctrl;
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(Xfactory.class, args);
 	}
@@ -70,7 +70,7 @@ public class Xfactory {
 
 	@EventListener(ApplicationReadyEvent.class)
 	public void checkFileSystem() {
-
+		
 		final String[] dirList = { basePath, basePath + "/" + areaIn, basePath + "/" + areaDone,
 				basePath + "/" + areaError, basePath + "/" + areaOut, basePath + "/" + areaLib };
 

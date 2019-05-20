@@ -32,7 +32,7 @@ font-size: 8pt;
 		<center>
 			<borderlayout>
 				
-				<west flex="true" width="40%">
+				<west flex="true" width="40%" splittable="true">
 					<vbox vflex="true">
 						<toolbar height="40px">
 							<toolbarbutton id="refreshSlotList" image="img/refresh.gif"></toolbarbutton>
@@ -42,16 +42,21 @@ font-size: 8pt;
 			 						 checkmark="false"  
 									 emptyMessage="no slots available">
 								<listhead sizable="true"  menupopup="auto">
-									<listheader label="SlotName"	width="130px"/>
-									<listheader label="IN" 			width="90px"/>
-									<listheader label="OUT"			width="90px"/>
+									<listheader label="SlotName"	width="170px"/>
+									<listheader label="In" 			width="90px"/>
+									<listheader label="Out"			width="90px"/>
 									<listheader label="Done"		width="90px"/>
 									<listheader label="Error"		width="90px"/>
 								</listhead>
 								<template name="model">
-						            <listitem>
-						            </listitem>
-						        </template>
+									<listitem>
+		                				<listcell label="${each.slotName}"></listcell>
+		                				<listcell label="${each.countIN}"></listcell>
+		                				<listcell label="${each.countOUT}"></listcell>
+		                				<listcell label="${each.countDONE}"></listcell>
+		                				<listcell label="${each.countERROR}"></listcell>
+		            				</listitem>
+		            			</template>
 							</listbox>
 					</vbox>
 				</west>
@@ -73,7 +78,7 @@ font-size: 8pt;
 						<listbox id="fileListView" 
 			 						 vflex="true"
 			 						 checkmark="false"  
-									 emptyMessage="no slots available">
+									 emptyMessage="no files...">
 								<listhead sizable="true"  menupopup="auto">
 									<listheader label="Filename"  width="300px"/>
 									<listheader label="Timestamp" width="200px"/>
@@ -90,7 +95,7 @@ font-size: 8pt;
 				
 				
 				</center>						
-				<south height="50%">
+				<south height="50%" splittable="true">
 					<vbox vflex="true">
 						<toolbar height="40px">
 							<toolbarbutton id="refreshButton" image="img/refresh.gif"></toolbarbutton>

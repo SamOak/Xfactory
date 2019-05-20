@@ -16,6 +16,8 @@ import org.zkoss.zul.Listbox;
 import de.semsoft.xfactory.logging.modell.LoggingEntry;
 import de.semsoft.xfactory.logging.repo.LoggingRepository;
 import de.semsoft.xfactory.services.ApplicationControl;
+import de.semsoft.xfactory.ui.SlotMetric;
+import de.semsoft.xfactory.ui.SlotMetricListImpl;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class AppControlController extends SelectorComposer<Component> {
@@ -24,6 +26,9 @@ public class AppControlController extends SelectorComposer<Component> {
 
 	@Wire
 	private Listbox protocolListbox;
+
+	@Wire
+	private Listbox slotOverView;
 
 	@Wire
 	private Label startTimeLabel;
@@ -43,6 +48,9 @@ public class AppControlController extends SelectorComposer<Component> {
 	@WireVariable("ApplicationControl")
 	private ApplicationControl appctrl;
 
+	@WireVariable("SlotMetricListImpl")
+	private SlotMetricListImpl slotMetricList;
+	
 	@WireVariable("LoggingRepository")
 	private LoggingRepository loggingRep;
 
@@ -58,7 +66,17 @@ public class AppControlController extends SelectorComposer<Component> {
 		}
 
 	}
-
+	
+	@Listen("onClick = #refreshSlotList")
+	public void refresSlotMetricView() {
+		
+		final List<SlotMetric> result = slotMetricList.getMetricList();
+		if (result != null) {
+			slotOverView.setModel(new ListModelList<SlotMetric>(result));
+		}
+		
+	}
+	
 	@Listen("onClick = #shutdown")
 	public void shutdown() {
 		appctrl.shutdown();
@@ -78,6 +96,7 @@ public class AppControlController extends SelectorComposer<Component> {
 	public void doAfterCompose(Component comp) throws Exception {
 		super.doAfterCompose(comp);
 		refresh();
+		refresSlotMetricView();
 	}
 
 }
