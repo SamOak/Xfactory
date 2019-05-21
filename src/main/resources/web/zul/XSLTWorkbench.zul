@@ -4,7 +4,7 @@
 				<borderlayout>
 					<north>
 					<toolbar>
-						<label style="color:grey;font-size:11pt;font-family: 'Tahoma'">XML</label>
+						<label style="color:grey;font-size:11pt;font-family: 'Verdana'">XML</label>
 						<toolbarbutton id="toolbarAddXML"		image="/img/addnew.gif"			tooltiptext="Add content..."				style="font-size:12px" upload="true,maxsize=-1,accept=.xml"  />
 						<toolbarbutton id="toolbarBeautifyXML"	image="/img/beautify.gif"		tooltiptext="Beautify document..."			style="font-size:12px" />
 						<toolbarbutton id="toolbarClearXML"		image="/img/clear.gif"			tooltiptext="Clear..." 						style="font-size:12px" />
@@ -12,7 +12,7 @@
 					</toolbar>		
 					</north>
 					<center>
-						<aceditor id="sourceXML" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true" fontSize="12px"></aceditor>
+						<aceditor id="sourceXML" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true"></aceditor>
 					</center>
 				</borderlayout>
 					
@@ -29,7 +29,7 @@
 					</toolbar>		
 					</north>
 					<center>
-						<aceditor id="xslContent" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true" fontSize="12px"></aceditor>
+						<aceditor id="xslContent" mode="xml" width="100%" height="100%" theme="eclipse" showGutter="true"></aceditor>
 					</center>
 				</borderlayout>
 			</east>

@@ -63,11 +63,11 @@ font-size: 8pt;
 				<center>
 					<vbox vflex="true">
 						<toolbar height="40px">
-							<combobox id="themeSelection">
+							<combobox id="areaSelection">
 								<comboitem label="IN" value="IN"/>
-								<comboitem label="OUT" value="IN"/>
-								<comboitem label="DONE" value="IN"/>
-								<comboitem label="ERROR" value="IN"/>
+								<comboitem label="OUT" value="OUT"/>
+								<comboitem label="DONE" value="DONE"/>
+								<comboitem label="ERROR" value="ERROR"/>
 							</combobox>
 							<toolbarbutton id="refreshFileList" image="img/refresh.gif"></toolbarbutton>
 							<toolbarbutton id="toolbarX"  tooltiptext="View file..." image="/img/view.gif"  />
