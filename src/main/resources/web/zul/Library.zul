@@ -1,6 +1,6 @@
 <zk>
 	
-		<vbox vflex="true" apply="de.semsoft.xfactory.ui.controller.FileController">
+		<vbox vflex="true" apply="de.semsoft.xfactory.ui.controller.LibraryController">
 	
 			<toolbar id="toolbarFileLibrary" height="30px" align="start" >
 	            <toolbarbutton id="toolbarFileLibraryRefresh" tooltiptext="Refresh..." image="img/refresh.gif"  />

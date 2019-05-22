@@ -18,10 +18,10 @@ import org.zkoss.zul.ListModelList;
 import org.zkoss.zul.Listbox;
 
 import de.semsoft.xfactory.ui.FileServiceImpl;
-import de.semsoft.xfactory.ui.LibFile;
+import de.semsoft.xfactory.ui.FsFile;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-public class FileController extends SelectorComposer<Component> {
+public class LibraryController extends SelectorComposer<Component> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -37,8 +37,8 @@ public class FileController extends SelectorComposer<Component> {
 	@Listen("onClick = #toolbarFileLibraryRefresh")
 	public void refreshList() {
 
-		final List<LibFile> result = fileService.findAll();
-		fileListbox.setModel(new ListModelList<LibFile>(result));
+		final List<FsFile> result = fileService.findAllLib();
+		fileListbox.setModel(new ListModelList<FsFile>(result));
 
 	}
 
@@ -53,8 +53,8 @@ public class FileController extends SelectorComposer<Component> {
 		if (fileListbox.getSelectedCount() > 0) {
 
 			final HashMap<String, String> map = new HashMap<String, String>();
-			map.put("content", ((LibFile) fileListbox.getSelectedItem().getValue()).getContent());
-			map.put("filename", ((LibFile) fileListbox.getSelectedItem().getValue()).getFileName());
+			map.put("content", ((FsFile) fileListbox.getSelectedItem().getValue()).getContent());
+			map.put("filename", ((FsFile) fileListbox.getSelectedItem().getValue()).getFileName());
 
 			Executions.createComponents("~./zul/ViewPopup.zul", null, map);
 
@@ -68,12 +68,12 @@ public class FileController extends SelectorComposer<Component> {
 		if (event.getMedia().getContentType().startsWith("text")) {
 			try {
 				fileService.addNewFile(IOUtils.toInputStream(event.getMedia().getStringData(), "UTF-8"),
-						event.getMedia().getName());
+						event.getMedia().getName(), null);
 			} catch (final IOException e) {
 				e.printStackTrace();
 			}
 		} else {
-			fileService.addNewFile(event.getMedia().getStreamData(), event.getMedia().getName());
+			fileService.addNewFile(event.getMedia().getStreamData(), event.getMedia().getName(), null);
 		}
 		refreshList();
 
@@ -84,7 +84,7 @@ public class FileController extends SelectorComposer<Component> {
 
 		if (fileListbox.getSelectedCount() > 0) {
 
-			fileService.deleteFile((LibFile) fileListbox.getSelectedItem().getValue());
+			fileService.deleteFile((FsFile) fileListbox.getSelectedItem().getValue());
 			refreshList();
 		}
 	}
@@ -95,7 +95,7 @@ public class FileController extends SelectorComposer<Component> {
 		super.doAfterCompose(comp);
 		refreshList();
 
-		libPath.setValue(fileService.getPath());
+		libPath.setValue(fileService.getLibPath());
 	}
 
 }

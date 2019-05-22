@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 import org.apache.commons.io.FileUtils;
 
-public class LibFile {
+public class FsFile {
 
 	private String fileName;
 	private long fileSize;
@@ -21,10 +21,10 @@ public class LibFile {
 
 	private final SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
 
-	public LibFile() {
+	public FsFile() {
 	}
 
-	public LibFile(File file) {
+	public FsFile(File file) {
 		this.file = file;
 		this.fileName = file.getName();
 		this.fileSize = file.length();

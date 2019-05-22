@@ -5,17 +5,20 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import de.semsoft.xfactory.ui.LibFile;
+import de.semsoft.xfactory.ui.FsFile;
 
 @Repository
 public interface XsltFileService {
 
-	public List<LibFile> findAll();
+	public List<FsFile> findAllLib();
+	public List<FsFile> searchLib(String keyword);
 
-	public List<LibFile> search(String keyword);
+	public List<FsFile> findAllSlot(String slot, String area);
+	public List<FsFile> searchSlot(String slot, String area, String keyword);
+	
+	
+	public boolean addNewFile(InputStream data, String fileName, String path);
 
-	public boolean addNewFile(InputStream data, String fileName);
-
-	public boolean deleteFile(LibFile file);
+	public boolean deleteFile(FsFile file);
 
 }

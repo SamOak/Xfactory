@@ -1,8 +1,13 @@
 package de.semsoft.xfactory.ui.controller;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.io.IOUtils;
 import org.zkoss.zk.ui.Component;
+import org.zkoss.zk.ui.Executions;
+import org.zkoss.zk.ui.event.UploadEvent;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.Listen;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
@@ -20,11 +25,13 @@ import org.zkoss.zul.ListitemRenderer;
 import de.semsoft.xfactory.logging.modell.LoggingEntry;
 import de.semsoft.xfactory.logging.repo.LoggingRepository;
 import de.semsoft.xfactory.services.ApplicationControl;
+import de.semsoft.xfactory.ui.FileServiceImpl;
+import de.semsoft.xfactory.ui.FsFile;
 import de.semsoft.xfactory.ui.SlotMetric;
 import de.semsoft.xfactory.ui.SlotMetricListImpl;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
-public class AppControlController extends SelectorComposer<Component> {
+public class BatchTransformController extends SelectorComposer<Component> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,6 +41,9 @@ public class AppControlController extends SelectorComposer<Component> {
 	@Wire
 	private Listbox slotOverView;
 
+	@Wire
+	private Listbox fileListView;	
+	
 	@Wire 
 	private Combobox areaSelection;
 	
@@ -57,6 +67,9 @@ public class AppControlController extends SelectorComposer<Component> {
 
 	@WireVariable("SlotMetricListImpl")
 	private SlotMetricListImpl slotMetricList;
+
+	@WireVariable("xlstFileServiceImpl")
+	private FileServiceImpl fileService;
 	
 	@WireVariable("LoggingRepository")
 	private LoggingRepository loggingRep;
@@ -75,9 +88,59 @@ public class AppControlController extends SelectorComposer<Component> {
 
 	}
 	
+	@Listen("onClick = #viewFileFileList")
+	public void  viewFile() {
+		
+		if (fileListView.getSelectedCount() > 0) {
+
+			final HashMap<String, String> map = new HashMap<String, String>();
+			map.put("content", ((FsFile) fileListView.getSelectedItem().getValue()).getContent());
+			map.put("filename", ((FsFile) fileListView.getSelectedItem().getValue()).getFileName());
+
+			Executions.createComponents("~./zul/ViewPopup.zul", null, map);
+
+		}
+		
+	}
+	
+	@Listen("onUpload = #addFileFileList")
+	public void addFile(UploadEvent event) {
+		
+		final Listitem li = slotOverView.getSelectedItem();
+		if( li != null ) {
+			final SlotMetric metric = (SlotMetric)li.getValue(); 
+			if (event.getMedia().getContentType().startsWith("text")) {
+				try {
+					fileService.addNewFile(IOUtils.toInputStream(event.getMedia().getStringData(), "UTF-8"),
+							event.getMedia().getName(), metric.getSlotName(), areaSelection.getValue());
+				} catch (final IOException e) {
+					e.printStackTrace();
+				}
+			} else {
+				fileService.addNewFile(event.getMedia().getStreamData(), event.getMedia().getName(), metric.getSlotName(), areaSelection.getValue());
+			}
+		}
+		refreshFilesView();
+		refresSlotMetricView();
+	
+	}
+	
+	@Listen("onClick = #deleteFileFileList")
+	public void deleteFile() {
+
+		if (fileListView.getSelectedCount() > 0) {
+
+			fileService.deleteFile((FsFile) fileListView.getSelectedItem().getValue());
+			refreshFilesView();
+			refresSlotMetricView();
+		}
+	}
+	
+	
 	@Listen("onClick = #slotOverView")
 	public void selectASlot() {
 		areaSelection.setValue("IN");
+		refreshFilesView();
 	}
 	
 	
@@ -92,6 +155,25 @@ public class AppControlController extends SelectorComposer<Component> {
 		}
 
 	}
+
+	
+	@Listen("onSelect = #areaSelection")
+	public void selectArea() {
+		refreshFilesView();
+	}
+	@Listen("onClick = #refreshFileList")
+	public void refreshFilesView() {
+		 
+		final Listitem li = slotOverView.getSelectedItem();
+		if( li != null ) {
+			final SlotMetric metric = (SlotMetric)li.getValue(); 
+			final List<FsFile> result = fileService.findAllSlot(metric.getSlotName(), areaSelection.getValue());
+			fileListView.setModel(new ListModelList<FsFile>(result));
+		}
+		
+	}
+
+	
 	
 	@Listen("onClick = #shutdown")
 	public void shutdown() {

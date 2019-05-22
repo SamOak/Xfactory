@@ -28,30 +28,65 @@ public class FileServiceImpl implements XsltFileService {
 	@Value("${xfactory.path.lib}")
 	private String lib;
 
-	@Override
-	public List<LibFile> findAll() {
+	@Value("${xfactory.path.area.in}")
+	private String areaIn;
 
-		return readFilesWithFilter(".*");
+	@Value("${xfactory.path.area.out}")
+	private String areaOut;
 
-	}
+	@Value("${xfactory.path.area.done}")
+	private String areaDone;
 
-	public String getPath() {
+	@Value("${xfactory.path.area.error}")
+	private String areaError;
+	
+	
+	public String getLibPath() {
 		return basePath + "/" + lib;
 	}
-
+	
+	public String getAreaPathName(String areaName) {
+		
+		String path = "";
+		
+		switch( areaName.toLowerCase() ) {
+			case "in"    : path = areaIn; break;
+			case "out"   : path = areaOut; break;
+			case "done"  : path = areaDone; break;
+			case "error" : path = areaError; break;
+		}
+		
+		return path;
+	}
+	
 	@Override
-	public List<LibFile> search(String keyword) {
-
-		return readFilesWithFilter(keyword);
-
+	public List<FsFile> findAllLib() {
+		return readFilesWithFilter(getLibPath(), ".*");
 	}
 
-	private List<LibFile> readFilesWithFilter(String filter) {
+	@Override
+	public List<FsFile> searchLib(String keyword) {
+		return readFilesWithFilter(getLibPath(),keyword);
+	}
 
-		final List<LibFile> result = new ArrayList<LibFile>();
+	@Override
+	public List<FsFile> findAllSlot(String slot, String area) {
+		return readFilesWithFilter(basePath + "/" + getAreaPathName(area) + "/" + slot, ".*");
+	}
+
+
+	@Override
+	public List<FsFile> searchSlot(String slot, String area, String keyword) {
+		return readFilesWithFilter(basePath + "/" + getAreaPathName(area) + "/" + slot, keyword);
+	}
+
+
+	private List<FsFile> readFilesWithFilter(String path, String filter) {
+
+		final List<FsFile> result = new ArrayList<FsFile>();
 
 		final Pattern p = Pattern.compile(filter);
-		final File[] fileList = new File(basePath + "/" + lib).listFiles(new FileFilter() {
+		final File[] fileList = new File(path).listFiles(new FileFilter() {
 			@Override
 			public boolean accept(File f) {
 				return p.matcher(f.getName()).matches();
@@ -61,19 +96,30 @@ public class FileServiceImpl implements XsltFileService {
 		if (fileList != null) {
 			if (fileList.length > 0) {
 				for (final File file : fileList) {
-					result.add(new LibFile(file));
+					result.add(new FsFile(file));
 				}
 			}
 		}
 		return result;
 	}
 
+	public boolean addNewFile(InputStream data, String fileName, String slot, String area) {
+		return addNewFile( data,  fileName, basePath + "/" + getAreaPathName(area) + "/" + slot);
+	}
+	
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean addNewFile(InputStream data, String fileName) {
+	public boolean addNewFile(InputStream data, String fileName, String path) {
 
+		String targetPath;
+		if( path == null ) {
+			targetPath = getLibPath();
+		} else {
+			targetPath = path;
+		}
+		
 		try {
-			java.nio.file.Files.copy(data, Paths.get(this.getPath() + "/" + fileName),
+			java.nio.file.Files.copy(data, Paths.get(targetPath + "/" + fileName),
 					StandardCopyOption.REPLACE_EXISTING);
 		} catch (final IOException e) {
 			e.printStackTrace();
@@ -86,7 +132,7 @@ public class FileServiceImpl implements XsltFileService {
 	}
 
 	@Override
-	public boolean deleteFile(LibFile file) {
+	public boolean deleteFile(FsFile file) {
 
 		return file.getFile().delete();
 

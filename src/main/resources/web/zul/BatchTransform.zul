@@ -8,7 +8,7 @@ font-size: 8pt;
 } 
 </style> 
 
-	<borderlayout apply="de.semsoft.xfactory.ui.controller.AppControlController">
+	<borderlayout apply="de.semsoft.xfactory.ui.controller.BatchTransformController">
 		
 		<west  title="Remotecontrol" size="250px"  splittable="true" collapsible="true" open="false">
 			<grid>
@@ -70,22 +70,25 @@ font-size: 8pt;
 								<comboitem label="ERROR" value="ERROR"/>
 							</combobox>
 							<toolbarbutton id="refreshFileList" image="img/refresh.gif"></toolbarbutton>
-							<toolbarbutton id="toolbarX"  tooltiptext="View file..." image="/img/view.gif"  />
+							<toolbarbutton id="viewFileFileList"  tooltiptext="View file..." image="/img/view.gif"  />
 	            			<space />
-				            <toolbarbutton id="toolbarY"  tooltiptext="Add new..." image="/img/addnew.gif" upload="true,maxsize=-1" />
-				            <toolbarbutton id="toolbarZ"  tooltiptext="Delete!" image="/img/delete.gif"  />
+				            <toolbarbutton id="addFileFileList"  tooltiptext="Add new..." image="/img/addnew.gif" upload="true,maxsize=-1" />
+				            <toolbarbutton id="deleteFileFileList"  tooltiptext="Delete!" image="/img/delete.gif"  />
 						</toolbar>
 						<listbox id="fileListView" 
 			 						 vflex="true"
 			 						 checkmark="false"  
 									 emptyMessage="no files...">
-								<listhead sizable="true"  menupopup="auto">
-									<listheader label="Filename"  width="300px"/>
-									<listheader label="Timestamp" width="200px"/>
-									<listheader label="Filesize" />
+								<listhead sizable="true">
+									<listheader label="Filename" sort="auto(fileName)" width="300px"/>
+									<listheader label="Timestamp" sort="auto(lastModified)" width="220px"/>
+									<listheader label="Filesize" sort="auto(fileSize)" width="120px"/>
 								</listhead>
 								<template name="model">
 						            <listitem>
+						                <listcell label="${each.fileName}"></listcell>
+						                <listcell label="${each.timestamp}"></listcell>
+						                <listcell label="${each.fileSizeFormated}"></listcell>
 						            </listitem>
 						        </template>
 							</listbox>
