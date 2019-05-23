@@ -88,6 +88,11 @@ public class BatchTransformController extends SelectorComposer<Component> {
 
 	}
 	
+	@Listen("onDoubleClick = #fileListView")
+	public void viewFileByDoubleClick() {
+		viewFile();
+	}
+	
 	@Listen("onClick = #viewFileFileList")
 	public void  viewFile() {
 		
@@ -161,6 +166,7 @@ public class BatchTransformController extends SelectorComposer<Component> {
 	public void selectArea() {
 		refreshFilesView();
 	}
+	
 	@Listen("onClick = #refreshFileList")
 	public void refreshFilesView() {
 		 
@@ -173,7 +179,6 @@ public class BatchTransformController extends SelectorComposer<Component> {
 		
 	}
 
-	
 	
 	@Listen("onClick = #shutdown")
 	public void shutdown() {
@@ -196,7 +201,6 @@ public class BatchTransformController extends SelectorComposer<Component> {
 		refresh();
 		refresSlotMetricView();
 	}
-
 
 	@SuppressWarnings("rawtypes")
 	public class SlotOverviewItemRenderer implements ListitemRenderer {
