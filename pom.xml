@@ -14,7 +14,7 @@
 
 	<groupId>de.semsoft</groupId>
 	<artifactId>Xfactory</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 	<name>Xfactory</name>
 	<description>XML factory</description>
 
