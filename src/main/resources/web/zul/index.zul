@@ -25,7 +25,7 @@
 								<image src="img/logo.jpg" height="337px" width="600px" id="logo" align="left" border="0" tooltiptext="(c) by SEM"/>
 								<space height="25px"/>
 		   						<label style="font-size: 18px;font-weight:bold;color:grey"></label>
-		   						<label style="font-size: 12px">Version 0.0.1</label>
+		   						<label style="font-size: 12px">Version 0.0.2</label>
 								<space height="25px"/>
 		   						<hbox align="end" pack="center" sizedByContent="false">
 									<label>Theme:</label>
