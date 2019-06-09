@@ -21,6 +21,7 @@ import org.zkoss.zul.Listbox;
 import org.zkoss.zul.Listcell;
 import org.zkoss.zul.Listitem;
 import org.zkoss.zul.ListitemRenderer;
+import org.zkoss.zul.Textbox;
 
 import de.semsoft.xfactory.logging.modell.LoggingEntry;
 import de.semsoft.xfactory.logging.repo.LoggingRepository;
@@ -55,6 +56,9 @@ public class BatchTransformController extends SelectorComposer<Component> {
 
 	@Wire
 	private Label noJobsLabel;
+	
+	@Wire
+	private Textbox newSlotName;
 
 	@Wire
 	private Image startStop;
@@ -122,7 +126,16 @@ public class BatchTransformController extends SelectorComposer<Component> {
 					e.printStackTrace();
 				}
 			} else {
+				
 				fileService.addNewFile(event.getMedia().getStreamData(), event.getMedia().getName(), metric.getSlotName(), areaSelection.getValue());
+				if( event.getMedia().getFormat().toLowerCase().equals("zip") ) {
+
+					//extract all files from zip...
+					
+					
+					//delete zip file
+					
+				}
 			}
 		}
 		refreshFilesView();
@@ -162,6 +175,26 @@ public class BatchTransformController extends SelectorComposer<Component> {
 	}
 
 	
+	@Listen("onClick = #addSlot")
+	public void addSlot() {
+		if( newSlotName.getValue().length() > 0 ) {
+			fileService.addSlot(newSlotName.getValue());
+			refresSlotMetricView();
+		}
+	}
+	
+	@Listen("onClick = #deleteSlot")
+	public void deleteSlot() {
+	
+		final Listitem li = slotOverView.getSelectedItem();
+		if( li != null ) {
+			fileService.deleteSlot(((SlotMetric)li.getValue()).getSlotName());
+			refresSlotMetricView();
+		}
+
+	}
+		
+		
 	@Listen("onSelect = #areaSelection")
 	public void selectArea() {
 		refreshFilesView();

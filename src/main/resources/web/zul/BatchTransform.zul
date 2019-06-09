@@ -35,7 +35,13 @@ font-size: 8pt;
 				<west flex="true" width="40%" splittable="true">
 					<vbox vflex="true">
 						<toolbar height="40px">
-							<toolbarbutton id="refreshSlotList" image="img/refresh.gif"></toolbarbutton>
+							<toolbarbutton id="refreshSlotList" image="img/refresh.gif" tooltiptext="refresh slotlist"></toolbarbutton>
+							<space />
+							<label>new Slot:</label>
+							<textbox id="newSlotName"></textbox>
+							<toolbarbutton id="addSlot" image="img/newSlot.gif" tooltiptext="create a new slot"></toolbarbutton>
+							<space />
+							<toolbarbutton id="deleteSlot" image="img/delete.gif" tooltiptext="delete selected slot"></toolbarbutton>
 						</toolbar>
 						<listbox id="slotOverView" 
 			 						 vflex="true"

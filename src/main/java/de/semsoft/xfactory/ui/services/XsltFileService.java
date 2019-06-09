@@ -20,5 +20,8 @@ public interface XsltFileService {
 	public boolean addNewFile(InputStream data, String fileName, String path);
 
 	public boolean deleteFile(FsFile file);
+	
+	public boolean deleteSlot(String slotName);
+	public boolean addSlot(String slotName);
 
 }

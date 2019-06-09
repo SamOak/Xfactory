@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class FileServiceImpl implements XsltFileService {
 	// private static final Logger LOG =
 	// LoggerFactory.getLogger(FileServiceImpl.class);
 
+	final private String[] areaList = {"in","out","done","error"};
+	
 	@Value("${xfactory.path.basepath}")
 	private String basePath;
 
@@ -81,6 +84,8 @@ public class FileServiceImpl implements XsltFileService {
 	}
 
 
+	
+	
 	private List<FsFile> readFilesWithFilter(String path, String filter) {
 
 		final List<FsFile> result = new ArrayList<FsFile>();
@@ -136,6 +141,31 @@ public class FileServiceImpl implements XsltFileService {
 
 		return file.getFile().delete();
 
+	}
+
+	@Override
+	public boolean deleteSlot(String slotName) {
+
+		for (final String areaName : areaList) {
+
+			final String path = basePath + "/" + getAreaPathName(areaName) + "/" + slotName; 
+			try {
+				FileUtils.deleteDirectory(new File(path));
+			} catch (final IOException e) {
+				return false;
+			}
+		}
+		return true;
+		
+	}
+
+	@Override
+	public boolean addSlot(String slotName) {
+
+		final String path = basePath + "/" + getAreaPathName("in") + "/" + slotName;
+		new File(path).mkdirs();
+		
+		return true;
 	}
 
 }
