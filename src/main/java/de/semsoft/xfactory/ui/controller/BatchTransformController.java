@@ -1,5 +1,6 @@
 package de.semsoft.xfactory.ui.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +31,7 @@ import de.semsoft.xfactory.ui.FileServiceImpl;
 import de.semsoft.xfactory.ui.FsFile;
 import de.semsoft.xfactory.ui.SlotMetric;
 import de.semsoft.xfactory.ui.SlotMetricListImpl;
+import de.semsoft.xfactory.util.UnZipUtility;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class BatchTransformController extends SelectorComposer<Component> {
@@ -127,13 +129,22 @@ public class BatchTransformController extends SelectorComposer<Component> {
 				}
 			} else {
 				
-				fileService.addNewFile(event.getMedia().getStreamData(), event.getMedia().getName(), metric.getSlotName(), areaSelection.getValue());
+				final String fileName = fileService.addNewFile(event.getMedia().getStreamData(), event.getMedia().getName(), metric.getSlotName(), areaSelection.getValue());
+
+				/*
+				 * zipfile... extract and delete the zipfile...
+				 */
 				if( event.getMedia().getFormat().toLowerCase().equals("zip") ) {
 
-					//extract all files from zip...
+					final UnZipUtility unzipper = new UnZipUtility();
+					try {
+						final String path = (new File(fileName)).getParent();
+						unzipper.unzip(fileName, path);
+						new File(fileName).delete();
+					} catch (final IOException e) {
+						e.printStackTrace();
+					}
 					
-					
-					//delete zip file
 					
 				}
 			}

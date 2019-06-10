@@ -108,13 +108,13 @@ public class FileServiceImpl implements XsltFileService {
 		return result;
 	}
 
-	public boolean addNewFile(InputStream data, String fileName, String slot, String area) {
+	public String addNewFile(InputStream data, String fileName, String slot, String area) {
 		return addNewFile( data,  fileName, basePath + "/" + getAreaPathName(area) + "/" + slot);
 	}
 	
 	@SuppressWarnings("deprecation")
 	@Override
-	public boolean addNewFile(InputStream data, String fileName, String path) {
+	public String addNewFile(InputStream data, String fileName, String path) {
 
 		String targetPath;
 		if( path == null ) {
@@ -128,12 +128,12 @@ public class FileServiceImpl implements XsltFileService {
 					StandardCopyOption.REPLACE_EXISTING);
 		} catch (final IOException e) {
 			e.printStackTrace();
-			return false;
+			return null;
 		}
 
 		IOUtils.closeQuietly(data);
 
-		return true;
+		return targetPath + "/" + fileName;
 	}
 
 	@Override

@@ -17,7 +17,7 @@ public interface XsltFileService {
 	public List<FsFile> searchSlot(String slot, String area, String keyword);
 	
 	
-	public boolean addNewFile(InputStream data, String fileName, String path);
+	public String addNewFile(InputStream data, String fileName, String path);
 
 	public boolean deleteFile(FsFile file);
 	
