@@ -26,7 +26,7 @@ I will continue to work on this project to improve it more and more. If you want
 
 
 You'll find the current release here: 
-[Xfactory-0.0.2.jar](https://github.com/SamOak/Xfactory/releases/download/0.0.2/Xfactory-0.0.2.jar)
+[Xfactory-0.0.3.jar](https://github.com/SamOak/Xfactory/releases/download/0.0.3/Xfactory-0.0.3.jar)
 
 
 ## What is Xfactory?
