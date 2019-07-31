@@ -210,7 +210,7 @@ By default Xfactory use saxon for processing xml files. If you want to change th
 
 to the processor class (classname) you want to use.
 You can set this parameter in the commandline or you adjust the application.properties file. 
-Make sure the jar-file ist available.
+Make sure the jar-file is available.
 
 ## Beyond...
 
