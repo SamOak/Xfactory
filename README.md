@@ -202,6 +202,16 @@ Xfactory includes the spring-boot-actuator module. So you can access all the act
 
 You'll find a detailed description here: https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready.html
 
+### xslt Processor
+
+By default Xfactory use saxon for processing xml files. If you want to change that, just set 
+
+	-Djava.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl
+
+to the processor class (classname) you want to use.
+You can set this parameter in the commandline or you adjust the application.properties file. 
+Make sure the jar-file ist available.
+
 ## Beyond...
 
 > Software is never really finished
