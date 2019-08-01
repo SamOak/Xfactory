@@ -208,7 +208,7 @@ By default Xfactory use saxon for processing xml files. If you want to change th
 
 	-Djava.xml.transform.TransformerFactory=net.sf.saxon.TransformerFactoryImpl
 
-to the processor class (classname) you want to use.
+to the processor class (classname) you want to use (for example "org.apache.xalan.processor.TransformerFactoryImpl").
 You can set this parameter in the commandline or you adjust the application.properties file. 
 Make sure the jar-file is available.
 
